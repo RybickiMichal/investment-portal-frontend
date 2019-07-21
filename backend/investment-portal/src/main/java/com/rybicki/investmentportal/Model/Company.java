@@ -41,9 +41,6 @@ public class Company {
 
     }
 
-    public Company() {
-
-    }
 
     public String getSymbol() {
         return symbol;

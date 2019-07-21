@@ -22,9 +22,9 @@ public class DowJones30Controller implements StockController {
         return dowJones30Service.findAll();
     }
 
-    @GetMapping("/stocks/dowJones/{index}")
+    @GetMapping("/stocks/dowJones/{symbol}")
     @Override
-    public Company getCompany(@PathVariable String index){
-        return dowJones30Service.findBySymbol(index);
+    public Company getCompany(@PathVariable String symbol){
+        return dowJones30Service.findBySymbol(symbol);
     }
 }
