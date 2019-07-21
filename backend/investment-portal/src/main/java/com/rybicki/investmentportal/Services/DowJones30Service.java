@@ -3,16 +3,13 @@ package com.rybicki.investmentportal.Services;
 import com.rybicki.investmentportal.Model.Company;
 import com.rybicki.investmentportal.Model.Stocks;
 import org.springframework.stereotype.Service;
-import yahoofinance.Stock;
-import yahoofinance.YahooFinance;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Service
 public class DowJones30Service implements StockService {
 
-    Stocks stocks = new Stocks();
+    private Stocks stocks = new Stocks();
     private ArrayList<Company> dowJones30 = stocks.getDowJones30();
 
     @Override

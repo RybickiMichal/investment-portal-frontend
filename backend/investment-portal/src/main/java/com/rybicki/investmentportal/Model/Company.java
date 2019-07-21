@@ -12,10 +12,9 @@ public class Company {
     private String symbol;
     private String name;
     private BigDecimal quote;
+    private BigDecimal change;
+    private BigDecimal changeInPercent;
     private BigDecimal annualYieldDividend;
-    private String currency;
-//    private String stockExchange;
-//    private List history;
 
 
     public Company(String symbol) {
@@ -25,13 +24,13 @@ public class Company {
             annualYieldDividend = stock.getDividend().getAnnualYield();
             name = stock.getName();
             quote = stock.getQuote().getPrice();
-            currency = stock.getCurrency();
+            change = stock.getQuote().getChange();
+            changeInPercent = stock.getQuote().getChangeInPercent();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
 
     public String getSymbol() {
         return symbol;
@@ -49,15 +48,28 @@ public class Company {
         return quote;
     }
 
-    public String getCurrency() {
-        return currency;
+    public BigDecimal getChange() {
+        return change;
+    }
+
+    public BigDecimal getChangeInPercent() {
+        return changeInPercent;
+    }
+
+    public void setQuote(BigDecimal quote) {
+        this.quote = quote;
+    }
+
+    public void setChange(BigDecimal change) {
+        this.change = change;
+    }
+
+    public void setChangeInPercent(BigDecimal changeInPercent) {
+        this.changeInPercent = changeInPercent;
     }
 
     public void setAnnualYieldDividend(BigDecimal annualYieldDividend) {
         this.annualYieldDividend = annualYieldDividend;
     }
 
-    public void setQuote(BigDecimal quote) {
-        this.quote = quote;
-    }
 }
