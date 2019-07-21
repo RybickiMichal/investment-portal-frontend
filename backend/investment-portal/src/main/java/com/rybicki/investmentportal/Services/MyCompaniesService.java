@@ -17,6 +17,7 @@ public class MyCompaniesService {
         companies.add(new Company("KO"));
         companies.add(new Company("CSCO"));
         companies.add(new Company("IBM"));
+        companies.add(new Company("WBA"));
     }
 
     public ArrayList<Company> findAll(){
@@ -53,6 +54,9 @@ public class MyCompaniesService {
         }
         if(!companyExistInList){
             Company newCompany = new Company(symbol);
+            if(newCompany.getSymbol().equals("Company doesn't exist")){
+                return null;
+            }
             companies.add(newCompany);
             return newCompany;
         }

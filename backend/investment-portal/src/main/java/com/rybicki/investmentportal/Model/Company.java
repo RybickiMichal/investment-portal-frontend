@@ -27,7 +27,7 @@ public class Company {
             change = stock.getQuote().getChange();
             changeInPercent = stock.getQuote().getChangeInPercent();
         } catch (IOException e) {
-            e.printStackTrace();
+            this.symbol = "Company doesn't exist";
         }
 
     }

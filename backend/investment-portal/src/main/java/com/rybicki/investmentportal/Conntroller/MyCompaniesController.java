@@ -36,17 +36,8 @@ public class MyCompaniesController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/stocks/{username}/myCompanies/{symbol}")
-    public ResponseEntity<Company> updateCompany(@PathVariable String username, @PathVariable String symbol){
-        Company companyUpdated = myCompaniesService.addBySymbol(symbol);
-        if(companyUpdated == null){
-            return ResponseEntity.badRequest().build();
-        }
-        return new ResponseEntity<Company>(companyUpdated, HttpStatus.OK);
-    }
-
     @PostMapping("/stocks/{username}/myCompanies/{symbol}")
-    public ResponseEntity<Void> createCompany(@PathVariable String username, @PathVariable String symbol){
+    public ResponseEntity<Void> addCompany(@PathVariable String username, @PathVariable String symbol){
         Company createdCompany = myCompaniesService.addBySymbol(symbol);
         if(createdCompany == null){
             return ResponseEntity.badRequest().build();
