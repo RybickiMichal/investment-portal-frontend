@@ -14,8 +14,8 @@ public class CompanyDetailsController {
 
     @GetMapping("/stocks/companyDetails/{symbol}")
     public Map<String, Object> getCompanyDetails(@PathVariable String symbol){
-        CompanyDetails cd = new CompanyDetails(symbol);
-        return  cd.getCompanyDetailsDataNumbers();
+        CompanyDetails companyDetails = new CompanyDetails(symbol);
+        return  companyDetails.getCompanyDetails();
     }
 
 }

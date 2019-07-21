@@ -10,19 +10,16 @@ import { AuthenticationService } from '../service/authentication.service';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
-    private authenticationService:AuthenticationService) { }
+    private authenticationService: AuthenticationService) { }
 
   username = 'username'
   password = 'password'
   invalidLogin = false;
   errorMessage = 'Invalid Credentials'
 
- 
-handleLogin() {
-    // if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
-      
-      // if(this.username==="username" && this.password === 'password'){  
-        if(this.authenticationService.authenticate(this.username, this.password)){
+
+  handleLogin() {
+    if (this.authenticationService.authenticate(this.username, this.password)) {
       this.router.navigate(['welcome', this.username])
       this.invalidLogin = false
     } else {

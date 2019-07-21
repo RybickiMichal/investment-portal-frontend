@@ -8,10 +8,8 @@ export class AuthenticationService {
   constructor() { }
 
   authenticate(username, password){
-    // console.log('before ' + this.isUserLogged())
     if(username==="username" && password === 'password'){  
       sessionStorage.setItem('authenticateUser', username);
-      // console.log('after ' + this.isUserLogged())
       return true; 
     }
     return false;

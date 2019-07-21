@@ -11,7 +11,6 @@ export class CompanyDataService {
 
   retrieveAllCompanies(username: string) {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/${username}/myCompanies`)
-    // console.log("Execute Hello World Bean Service")
   }
 
   deleteCompany(username: string, symbol: string) {

@@ -1,10 +1,10 @@
 <div class="container">
   <h4 class="font-weight-bold">Choose Chart</h4>
-  
+
   <button (click)="setActiveChart('Line Chart')" class="btn btn-success">Line Chart</button>&nbsp;
   <button (click)="setActiveChart('Candle Chart')" class="btn btn-success">Candle Chart</button>&nbsp;
   <button (click)="setActiveChart('Bar Chart')" class="btn btn-success">Bar Chart</button>&nbsp;
-  
+
 </div>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <BR>
@@ -22,16 +22,14 @@
   <button (click)="setActiveTime('Twenty Years')" class="btn btn-primary">20 Years</button>&nbsp;
 </div>
 <BR>
-<!-- <div class="container"> -->
-  <tr *ngFor="let detail of fullCompanyData">
-    
-      <p class="text-justify"><b>{{detail.x}}:</b> {{detail.y}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-    
-  </tr>
-<!-- </div> -->
-  <BR>
+<tr *ngFor="let detail of fullCompanyData">
+
+  <p class="text-justify"><b>{{detail.description}}:</b> {{detail.value}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+</tr>
+<BR>
 <div class="container">
   <button (click)="backToThePreviousList()" class="btn btn-success">Back to the list</button>
 </div>
 <BR>
-  <BR>
+<BR>
