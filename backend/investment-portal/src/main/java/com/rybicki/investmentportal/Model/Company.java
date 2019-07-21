@@ -17,18 +17,31 @@ public class Company {
     private BigDecimal annualYieldDividend;
 
 
-    public Company(String symbol) {
-        this.symbol = symbol;
-        try {
-            Stock stock = YahooFinance.get(symbol);
-            annualYieldDividend = stock.getDividend().getAnnualYield();
-            name = stock.getName();
-            quote = stock.getQuote().getPrice();
-            change = stock.getQuote().getChange();
-            changeInPercent = stock.getQuote().getChangeInPercent();
-        } catch (IOException e) {
-            this.symbol = "Company doesn't exist";
+    public Company(String symbol, boolean loadData) {
+        if(loadData) {
+            this.symbol = symbol;
+            try {
+                Stock stock = YahooFinance.get(symbol);
+                annualYieldDividend = stock.getDividend().getAnnualYield();
+                name = stock.getName();
+                quote = stock.getQuote().getPrice();
+                change = stock.getQuote().getChange();
+                changeInPercent = stock.getQuote().getChangeInPercent();
+            } catch (IOException e) {
+                this.symbol = "Company doesn't exist";
+            }
+        }else{
+            this.symbol = symbol;
+            this.name = "";
+            this.quote = new BigDecimal("0");
+            this.change = new BigDecimal("0");
+            this.changeInPercent = new BigDecimal("0");
+            this.annualYieldDividend = new BigDecimal("0");
         }
+
+    }
+
+    public Company() {
 
     }
 
@@ -72,4 +85,7 @@ public class Company {
         this.annualYieldDividend = annualYieldDividend;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

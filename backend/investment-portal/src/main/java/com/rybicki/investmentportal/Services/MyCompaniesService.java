@@ -13,17 +13,21 @@ public class MyCompaniesService {
     private Stocks stocks = new Stocks();
 
     static{
-        companies.add(new Company("DOW"));
-        companies.add(new Company("KO"));
-        companies.add(new Company("CSCO"));
-        companies.add(new Company("IBM"));
-        companies.add(new Company("WBA"));
+        companies.add(new Company("DOW", false));
+        companies.add(new Company("KO", false));
+        companies.add(new Company("CSCO", false));
+        companies.add(new Company("IBM", false));
+        companies.add(new Company("WBA", false));
     }
 
     public ArrayList<Company> findAll(){
-        for(Company company: companies){
-            stocks.actualizeCompanyData(company);
+        Company companiesArray[] = new Company[companies.size()];
+        String companiesSymbols[] = new String[companies.size()];
+        companies.toArray(companiesArray);
+        for(int x=0; x<companiesArray.length;x++){
+            companiesSymbols[x] = companiesArray[x].getSymbol();
         }
+        companies = stocks.actualizeCompaniesData(companies, companiesSymbols);
         return companies;
     }
 
@@ -53,7 +57,7 @@ public class MyCompaniesService {
             }
         }
         if(!companyExistInList){
-            Company newCompany = new Company(symbol);
+            Company newCompany = new Company(symbol, true);
             if(newCompany.getSymbol().equals("Company doesn't exist")){
                 return null;
             }

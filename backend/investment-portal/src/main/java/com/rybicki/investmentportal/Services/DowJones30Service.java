@@ -11,10 +11,11 @@ public class DowJones30Service implements StockService {
 
     private Stocks stocks = new Stocks();
     private ArrayList<Company> dowJones30 = stocks.getDowJones30();
+    private String[] dowJones30symbols = stocks.getDowJones30Symbols();
 
     @Override
     public ArrayList<Company> findAll(){
-        stocks.actualizeDowJones30Data();
+        dowJones30 = stocks.actualizeCompaniesData(dowJones30, dowJones30symbols);
         return dowJones30;
     }
 

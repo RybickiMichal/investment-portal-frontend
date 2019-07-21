@@ -14,12 +14,17 @@ public class Stocks {
     public Stocks(){
         dowJones30 = new ArrayList<Company>();
         for (int x=0; x<dowJones30Symbols.length;x++){
-            dowJones30.add(new Company(dowJones30Symbols[x]));
+            dowJones30.add(new Company(dowJones30Symbols[x], false));
         }
+        dowJones30 = actualizeCompaniesData(dowJones30,dowJones30Symbols);
     }
 
     public ArrayList getDowJones30(){
         return dowJones30;
+    }
+
+    public static String[] getDowJones30Symbols() {
+        return dowJones30Symbols;
     }
 
     public Company actualizeCompanyData(Company company){
@@ -36,22 +41,25 @@ public class Stocks {
         return null;
     }
 
-    public void actualizeDowJones30Data(){
+    public ArrayList<Company> actualizeCompaniesData(ArrayList<Company> companies, String[] symbols){
         try {
-            Map<String, Stock> stock = YahooFinance.get(dowJones30Symbols);
-            dowJones30.forEach((company) ->{
-                for (int x=0; x<dowJones30Symbols.length;x++){
-                    if(dowJones30Symbols[x].equals(company.getSymbol())){
-                        company.setAnnualYieldDividend(stock.get(dowJones30Symbols[x]).getDividend().getAnnualYield());
-                        company.setQuote(stock.get(dowJones30Symbols[x]).getQuote().getPrice());
-                        company.setChange(stock.get(dowJones30Symbols[x]).getQuote().getChange());
-                        company.setChangeInPercent(stock.get(dowJones30Symbols[x]).getQuote().getChangeInPercent());
+            Map<String, Stock> stock = YahooFinance.get(symbols);
+            companies.forEach((company) ->{
+                for (int x=0; x<symbols.length;x++){
+                    if(symbols[x].equals(company.getSymbol())){
+                        company.setAnnualYieldDividend(stock.get(symbols[x]).getDividend().getAnnualYield());
+                        company.setQuote(stock.get(symbols[x]).getQuote().getPrice());
+                        company.setChange(stock.get(symbols[x]).getQuote().getChange());
+                        company.setChangeInPercent(stock.get(symbols[x]).getQuote().getChangeInPercent());
+                        if(company.getName() == null || company.getName().isEmpty()){
+                            company.setName(stock.get(symbols[x]).getName());
+                        }
                     }
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return companies;
     }
-
 }
