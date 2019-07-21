@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 public class Company {
-    private String symbol;
-    private String name;
-    private BigDecimal quote;
-    private BigDecimal change;
-    private BigDecimal changeInPercent;
-    private BigDecimal annualYieldDividend;
+    protected String symbol;
+    private String name= "";
+    private BigDecimal price= new BigDecimal("0");
+    private BigDecimal change= new BigDecimal("0");
+    private BigDecimal changeInPercent= new BigDecimal("0");
+    private BigDecimal annualYieldDividend= new BigDecimal("0");
 
 
     public Company(String symbol, boolean loadData) {
@@ -24,7 +24,7 @@ public class Company {
                 Stock stock = YahooFinance.get(symbol);
                 annualYieldDividend = stock.getDividend().getAnnualYield();
                 name = stock.getName();
-                quote = stock.getQuote().getPrice();
+                price = stock.getQuote().getPrice();
                 change = stock.getQuote().getChange();
                 changeInPercent = stock.getQuote().getChangeInPercent();
             } catch (IOException e) {
@@ -32,13 +32,7 @@ public class Company {
             }
         }else{
             this.symbol = symbol;
-            this.name = "";
-            this.quote = new BigDecimal("0");
-            this.change = new BigDecimal("0");
-            this.changeInPercent = new BigDecimal("0");
-            this.annualYieldDividend = new BigDecimal("0");
         }
-
     }
 
 
@@ -54,8 +48,8 @@ public class Company {
         return annualYieldDividend;
     }
 
-    public BigDecimal getQuote() {
-        return quote;
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public BigDecimal getChange() {
@@ -66,8 +60,8 @@ public class Company {
         return changeInPercent;
     }
 
-    public void setQuote(BigDecimal quote) {
-        this.quote = quote;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public void setChange(BigDecimal change) {

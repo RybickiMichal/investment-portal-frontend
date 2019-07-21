@@ -31,7 +31,7 @@ public class Stocks {
         try {
             Stock stock = YahooFinance.get(company.getSymbol());
             company.setAnnualYieldDividend(stock.getDividend().getAnnualYield());
-            company.setQuote(stock.getQuote().getPrice());
+            company.setPrice(stock.getQuote().getPrice());
             company.setChange(stock.getQuote().getChange());
             company.setChangeInPercent(stock.getQuote().getChangeInPercent());
             return company;
@@ -48,7 +48,7 @@ public class Stocks {
                 for (int x=0; x<symbols.length;x++){
                     if(symbols[x].equals(company.getSymbol())){
                         company.setAnnualYieldDividend(stock.get(symbols[x]).getDividend().getAnnualYield());
-                        company.setQuote(stock.get(symbols[x]).getQuote().getPrice());
+                        company.setPrice(stock.get(symbols[x]).getQuote().getPrice());
                         company.setChange(stock.get(symbols[x]).getQuote().getChange());
                         company.setChangeInPercent(stock.get(symbols[x]).getQuote().getChangeInPercent());
                         if(company.getName() == null || company.getName().isEmpty()){

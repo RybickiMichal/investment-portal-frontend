@@ -1,4 +1,4 @@
-package com.rybicki.investmentportal.Conntroller;
+package com.rybicki.investmentportal.Controller;
 
 import com.rybicki.investmentportal.Model.CompanyHistory;
 import org.springframework.web.bind.annotation.CrossOrigin;
