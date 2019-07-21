@@ -29,24 +29,4 @@ public class DowJones30Service implements StockService {
         }
         return null;
     }
-
-//    private static int idCounter = 0;
-//    public Todo save(Todo todo) {
-//        if(todo.getId()==-1 || todo.getId()==0){
-//            todo.setId(++idCounter);
-//            dowJones30.add(todo);
-//        }else{
-//            deleteById(todo.getId());
-//            dowJones30.add(todo);
-//        }
-//        return todo;
-//    }
-
-    //    public Todo deleteById(long id){
-//        Todo todo = findBySymbol(id);
-//        if(dowJones30.remove(todo)){
-//            return todo;
-//        }
-//        return null;
-//    }
 }

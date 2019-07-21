@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public interface StockController {
 
-    public ArrayList<Company> getAllCompanies();
+    ArrayList<Company> getAllCompanies();
 
-    public Company getCompany(@PathVariable String index);
+    Company getCompany(@PathVariable String index);
 
 }

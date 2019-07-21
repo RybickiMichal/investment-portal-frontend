@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Stocks {
     private ArrayList<Company> dowJones30;
-    private static String[] dowJones30Symbols = new String[] {"MMM", "AXP","AAPL","BA","CAT","CVX","CSCO","KO","DIS","DOW","XOM","GS","HD","IBM","INTC","JNJ","JPM","MCD","MRK","MSFT","NKE","PFE","PG","TRV","UTX","UNH","VZ","V","WMT","WBA"};;
+    private static String[] dowJones30Symbols = new String[] {"AXP","AAPL","BA","CAT","CVX","CSCO","DIS","DOW","GS","HD","IBM","INTC","JNJ","JPM","KO","MCD","MMM","MRK","MSFT","NKE","PFE","PG","TRV","UTX","UNH","VZ","V","WMT","WBA","XOM"};
 
     public Stocks(){
         dowJones30 = new ArrayList<Company>();
