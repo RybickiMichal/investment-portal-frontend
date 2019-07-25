@@ -99,6 +99,10 @@ export class ChartsComponent implements OnInit {
         for (let key in response) {
           let value = response[key];
           this.fullCompanyData.push({ description: key, value: value })
+          this.fullCompanyData.sort(function(a, b){
+            if(a.description < b.description) { return -1; }
+            if(a.description > b.description) { return 1; }
+            return 0; })
         }
       }
     );

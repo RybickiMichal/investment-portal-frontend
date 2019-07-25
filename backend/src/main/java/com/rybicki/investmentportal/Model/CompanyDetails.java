@@ -1,6 +1,6 @@
 package com.rybicki.investmentportal.Model;
 
-import com.rybicki.investmentportal.Services.MyCompaniesService;
+import com.rybicki.investmentportal.Service.MyCompaniesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;
@@ -74,9 +74,6 @@ public class CompanyDetails extends Company {
             if (stock.getStats().getShortRatio() != null)
                 companyDetails.put("Short Ratio", stock.getStats().getShortRatio().toString());
 
-//            if (stock.getStats().getEarningsAnnouncement() != null)
-//                companyDetails.put("Earnings Announcement", stock.getStats().getEarningsAnnouncement().toString());
-
             if (stock.getStats().getSharesFloat() != null)
                 companyDetails.put("Shares Float", stock.getStats().getSharesFloat().toString());
 
@@ -128,8 +125,56 @@ public class CompanyDetails extends Company {
             if (stock.getQuote().getVolume() != null)
                 companyDetails.put("Volume", stock.getQuote().getVolume().toString());
 
-            if (stock.getQuote().getYearLow() != null)
-                companyDetails.put("Year Low", stock.getQuote().getYearLow().toString());
+            if (stock.getQuote().getLastTradeTimeStr() != null)
+                companyDetails.put("Last Trade Time", stock.getQuote().getLastTradeTimeStr());
+
+            if (stock.getQuote().getChange() != null)
+                companyDetails.put("Change", stock.getQuote().getChange().toString());
+
+            if (stock.getQuote().getOpen() != null)
+                companyDetails.put("Open", stock.getQuote().getOpen().toString());
+
+            if (stock.getQuote().getSymbol() != null)
+                companyDetails.put("Symbol", stock.getQuote().getSymbol().toString());
+
+            if (stock.getQuote().getChangeFromYearHighInPercent() != null)
+                companyDetails.put("Change From Year High In Percent", stock.getQuote().getChangeFromYearHighInPercent().toString());
+
+            if (stock.getQuote().getChangeFromYearHigh() != null)
+                companyDetails.put("Change From Year High", stock.getQuote().getChangeFromYearHigh().toString());
+
+            if (stock.getQuote().getPrice() != null)
+                companyDetails.put("Price", stock.getQuote().getPrice().toString());
+
+            if (stock.getQuote().getChangeInPercent() != null)
+                companyDetails.put("Change In Percent", stock.getQuote().getChangeInPercent().toString());
+
+            if (stock.getQuote().getDayHigh() != null)
+                companyDetails.put("Day High", stock.getQuote().getDayHigh().toString());
+
+            if (stock.getQuote().getDayLow() != null)
+                companyDetails.put("Day Low", stock.getQuote().getDayLow().toString());
+
+            if (stock.getQuote().getPriceAvg50() != null)
+                companyDetails.put("Price Avg 50", stock.getQuote().getPriceAvg50().toString());
+
+            if (stock.getQuote().getChangeFromAvg50InPercent() != null)
+                companyDetails.put("Change From Avg 50 In Percent", stock.getQuote().getChangeFromAvg50InPercent().toString());
+
+            if (stock.getQuote().getChangeFromAvg50() != null)
+                companyDetails.put("Change From Avg 50", stock.getQuote().getChangeFromAvg50().toString());
+
+            if (stock.getQuote().getPriceAvg200() != null)
+                companyDetails.put("Price Avg 200", stock.getQuote().getPriceAvg200().toString());
+
+            if (stock.getQuote().getChangeFromAvg200InPercent() != null)
+                companyDetails.put("Change From Avg 200 In Percent", stock.getQuote().getChangeFromAvg200InPercent().toString());
+
+            if (stock.getQuote().getChangeFromAvg200() != null)
+                companyDetails.put("Change From Avg 200", stock.getQuote().getChangeFromAvg200().toString());
+
+            if (stock.getQuote().getYearHigh() != null)
+                companyDetails.put("Year High", stock.getQuote().getYearHigh().toString());
 
         } catch (IOException e) {
             LOGGER.error(e.toString());
