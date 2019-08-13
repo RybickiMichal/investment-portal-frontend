@@ -1,4 +1,4 @@
-package com.rybicki.investmentportal.Services;
+package com.rybicki.investmentportal.Service;
 
 import com.rybicki.investmentportal.Model.Company;
 
