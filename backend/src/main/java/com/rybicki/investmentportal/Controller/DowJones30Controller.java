@@ -1,7 +1,7 @@
 package com.rybicki.investmentportal.Controller;
 
 import com.rybicki.investmentportal.Model.Company;
-import com.rybicki.investmentportal.Service.DowJones30Service;
+import com.rybicki.investmentportal.Services.DowJones30Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
