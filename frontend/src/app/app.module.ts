@@ -12,8 +12,9 @@ import { ErrorComponent } from './error/error.component';
 import { DowJones30Component } from './dow-jones30/dow-jones30.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MyCompaniesComponent } from './my-companies/my-companies.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChartsComponent } from './charts/charts.component';
+import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { ChartsComponent } from './charts/charts.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

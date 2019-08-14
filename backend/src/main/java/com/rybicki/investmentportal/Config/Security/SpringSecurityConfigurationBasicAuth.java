@@ -1,11 +1,10 @@
-package com.rybicki.investmentportal.Security;
+package com.rybicki.investmentportal.Config.Security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -17,6 +16,7 @@ public class SpringSecurityConfigurationBasicAuth extends WebSecurityConfigurerA
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                .antMatchers("/stocks/dowJones","/stocks/historicalQuotes/**","/stocks/companyDetails/**","/stocks/historicalFullQuotes/**","/basicauth/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .and().httpBasic();
