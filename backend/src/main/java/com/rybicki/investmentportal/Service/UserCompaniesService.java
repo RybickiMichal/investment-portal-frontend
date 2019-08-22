@@ -6,6 +6,7 @@ import com.rybicki.investmentportal.Repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class UserCompaniesService {
         User user = loadUser(username);
         ArrayList<CompanyBasicInfo> companies = loadCompanies(user);
 
-        CompanyImpl companiesArray[] = new CompanyImpl[companies.size()];
+        CompanySymbol companiesArray[] = new CompanySymbol[companies.size()];
         String companiesSymbols[] = new String[companies.size()];
         companies.toArray(companiesArray);
         for (int x = 0; x < companiesArray.length; x++) {
@@ -45,34 +46,28 @@ public class UserCompaniesService {
         return companies;
     }
 
-    public CompanyBasicInfo findBySymbol(String symbol, String username) {
+    public CompanySymbol findCompanyBySymbol(String symbol, String username) {
         User user = loadUser(username);
-        ArrayList<CompanyBasicInfo> companies = loadCompanies(user);
-        for (CompanyBasicInfo companyBasicInfo : companies) {
+        ArrayList<CompanySymbol> companies = loadCompanySymbols(user);
+        for (CompanySymbol companyBasicInfo : companies) {
             if (companyBasicInfo.getSymbol().equals(symbol)) {
-                stocks.actualizeCompanyData(companyBasicInfo);
                 return companyBasicInfo;
             }
         }
         return null;
     }
 
-    public CompanyImpl findCompanyImplBySymbol(String symbol, String username) {
-        User user = loadUser(username);
-        ArrayList<CompanyImpl> companies = loadCompaniesImpl(user);
-        for (CompanyImpl companyBasicInfo : companies) {
-            if (companyBasicInfo.getSymbol().equals(symbol)) {
-                return companyBasicInfo;
-            }
-        }
-        return null;
+    public CompanyBasicInfo findCompanyBasicInfoBySymbol(String symbol, String username) {
+        CompanySymbol companySymbol = findCompanyBySymbol(symbol, username);
+        CompanyBasicInfo companyBasicInfo = new CompanyBasicInfo(companySymbol.getSymbol(),false);
+        stocks.actualizeCompanyData(companyBasicInfo);
+        return companyBasicInfo;
     }
 
     public CompanyBasicInfo deleteBySymbol(String symbol, String username) {
         User user = loadUser(username);
         ArrayList<CompanyBasicInfo> companies = loadCompanies(user);
-        CompanyImpl company = findCompanyImplBySymbol(symbol, username);
-        System.out.println(company.getSymbol() + company.getUser() + company.getId());
+        CompanySymbol company = findCompanyBySymbol(symbol, username);
         if (company != null) {
             companyRepository.deleteById(company.getId());
             return new CompanyBasicInfo(company.getSymbol(),false);
@@ -94,34 +89,33 @@ public class UserCompaniesService {
             if (newCompanyBasicInfo.getSymbol().equals("CompanyBasicInfo doesn't exist")) {
                 return null;
             }
-            companyRepository.save(new CompanyImpl(newCompanyBasicInfo.getSymbol(), user));
+            companyRepository.save(new CompanySymbol(newCompanyBasicInfo.getSymbol(), user));
             return newCompanyBasicInfo;
         }
         return null;
     }
 
-    private ArrayList<CompanyBasicInfo> loadCompanies(User user) {
-        ArrayList<CompanyBasicInfo> companies = new ArrayList<>();
-        List<CompanyImpl> repositoryCompanies = companyRepository.findAll();
-        for (CompanyImpl company : repositoryCompanies) {
+    private ArrayList<CompanySymbol> loadCompanySymbols(User user) {
+        ArrayList<CompanySymbol> companies = new ArrayList<>();
+        List<CompanySymbol> repositoryCompanies = companyRepository.findAll();
+        for (CompanySymbol company : repositoryCompanies) {
             Long companyUserId = company.getUser().getId();
             Long repositoryUsernameId = user.getId();
             if (companyUserId == repositoryUsernameId) {
-                companies.add(new CompanyBasicInfo(company.getSymbol(), false));
+                companies.add(new CompanySymbol(company.getSymbol(), user, company.getId()));
             }
         }
         return companies;
     }
 
-    private ArrayList<CompanyImpl> loadCompaniesImpl(User user) {
-        ArrayList<CompanyImpl> companies = new ArrayList<>();
-        List<CompanyImpl> repositoryCompanies = companyRepository.findAll();
-        for (CompanyImpl company : repositoryCompanies) {
-            Long companyUserId = company.getUser().getId();
-            Long repositoryUsernameId = user.getId();
-            if (companyUserId == repositoryUsernameId) {
-                companies.add(new CompanyImpl(company.getSymbol(), user, company.getId()));
-            }
+    private ArrayList<CompanyBasicInfo> loadCompanies(User user) {
+        return transformCompanySymbolsToCompanyBasicInfo(loadCompanySymbols(user));
+    }
+
+    private ArrayList<CompanyBasicInfo> transformCompanySymbolsToCompanyBasicInfo(ArrayList<CompanySymbol> symbols){
+        ArrayList<CompanyBasicInfo> companies = new ArrayList<>();
+        for (CompanySymbol companySymbol : symbols){
+            companies.add(new CompanyBasicInfo(companySymbol.getSymbol(), false));
         }
         return companies;
     }
@@ -135,8 +129,7 @@ public class UserCompaniesService {
             }
         }
         if (user == null) {
-            System.out.println("User is null!!");
-            return null;
+            throw new UsernameNotFoundException("User is null");
         }
         return user;
     }

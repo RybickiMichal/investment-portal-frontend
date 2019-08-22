@@ -23,7 +23,7 @@ public class UserCompaniesController {
 
     @GetMapping("/stocks/{username}/myCompanies/{symbol}")
     public CompanyBasicInfo getCompany(@PathVariable String symbol, @PathVariable String username){
-        return userCompaniesService.findBySymbol(symbol, username);
+        return userCompaniesService.findCompanyBasicInfoBySymbol(symbol, username);
     }
 
     @DeleteMapping("/stocks/{username}/myCompanies/{symbol}")

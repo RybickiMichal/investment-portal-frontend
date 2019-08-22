@@ -8,7 +8,7 @@ import yahoofinance.YahooFinance;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class CompanyBasicInfo extends CompanyImpl{
+public class CompanyBasicInfo extends CompanySymbol {
     private String name= "";
     private BigDecimal price= new BigDecimal("0");
     private BigDecimal change= new BigDecimal("0");

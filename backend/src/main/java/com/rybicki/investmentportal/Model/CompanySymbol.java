@@ -4,10 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "company")
-public class CompanyImpl implements Company {
+public class CompanySymbol implements Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     protected String symbol;
@@ -16,14 +16,14 @@ public class CompanyImpl implements Company {
     @JoinColumn
     private User user;
 
-    public CompanyImpl() {}
+    public CompanySymbol() {}
 
-    public CompanyImpl(String symbol, User user) {
+    public CompanySymbol(String symbol, User user) {
         this.symbol = symbol;
         this.user = user;
     }
 
-    public CompanyImpl(String symbol, User user, Long id) {
+    public CompanySymbol(String symbol, User user, Long id) {
         this.symbol = symbol;
         this.user = user;
         this.id = id;

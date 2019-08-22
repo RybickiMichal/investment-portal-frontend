@@ -1,7 +1,5 @@
 package com.rybicki.investmentportal.Model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.*;
@@ -28,7 +26,7 @@ public class User {
     private String permissions = "";
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<CompanyImpl> companies;
+    private Set<CompanySymbol> companies;
 
     public User() {}
 
@@ -91,11 +89,11 @@ public class User {
         return new ArrayList<>();
     }
 
-    public Set<CompanyImpl> getCompanies() {
+    public Set<CompanySymbol> getCompanies() {
         return companies;
     }
 
-    public void setCompanies(Set<CompanyImpl> companies) {
+    public void setCompanies(Set<CompanySymbol> companies) {
         this.companies = companies;
     }
 }
