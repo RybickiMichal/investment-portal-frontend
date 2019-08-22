@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyDataService } from '../service/data/company-data.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 export class Company {
   constructor(
     public symbol: string,
@@ -21,10 +22,10 @@ export class Company {
 export class MyCompaniesComponent implements OnInit {
 
   constructor(private router: Router,
-    private companyDataService: CompanyDataService) { }
+    private companyDataService: CompanyDataService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.companyDataService.retrieveAllCompanies("username").subscribe(
+    this.companyDataService.retrieveAllCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe( 
       response => {
         this.companies = response;
       }
@@ -45,7 +46,7 @@ export class MyCompaniesComponent implements OnInit {
   interval: any
 
   deleteCompany(symbol: string) {
-    this.companyDataService.deleteCompany('username', symbol).subscribe(
+    this.companyDataService.deleteCompany(this.authenticationService.getAuthenticatedUser().toString(), symbol).subscribe(
       response => {
         this.message = `Company with symbol ${symbol} successfully deleted!`
         this.refreshCompanies();
@@ -54,7 +55,7 @@ export class MyCompaniesComponent implements OnInit {
   }
 
   refreshCompanies() {
-    this.companyDataService.retrieveAllCompanies('username').subscribe(
+    this.companyDataService.retrieveAllCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe(
       response => {
         this.companies = response;
       }
@@ -65,7 +66,7 @@ export class MyCompaniesComponent implements OnInit {
     if (symbol == null) {
       return this.message = `You wrote empty symbol. Please write correct symbol!`
     }
-    this.companyDataService.addCompany('username', symbol.toUpperCase(), Company).subscribe(
+    this.companyDataService.addCompany(this.authenticationService.getAuthenticatedUser().toString(), symbol.toUpperCase(), Company).subscribe(
       response => {
         this.message = `Company with symbol ${symbol} successfully added!`
         this.refreshCompanies();

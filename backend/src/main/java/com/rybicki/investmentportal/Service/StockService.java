@@ -1,13 +1,13 @@
 package com.rybicki.investmentportal.Service;
 
-import com.rybicki.investmentportal.Model.Company;
+import com.rybicki.investmentportal.Model.CompanyBasicInfo;
 
 import java.util.ArrayList;
 
 public interface StockService {
 
-    ArrayList<Company> findAll();
+    ArrayList<CompanyBasicInfo> findAll();
 
-    Company findBySymbol(String symbol);
+    CompanyBasicInfo findBySymbol(String symbol);
 
 }

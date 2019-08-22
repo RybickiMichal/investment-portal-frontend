@@ -9,14 +9,6 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(username, password) {
-    if (username === "username" && password === 'password') {
-      sessionStorage.setItem('authenticateUser', username);
-      return true;
-    }
-    return false;
-  }
-
   executeAuthenticationService(username, password) {
     let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password)
 
@@ -43,7 +35,7 @@ export class AuthenticationService {
     if (this.getAuthenticatedUser()) { 
     return sessionStorage.getItem('token')
   }
-}
+} 
 
 isUserLogged() {
   let user = sessionStorage.getItem('authenticateUser')

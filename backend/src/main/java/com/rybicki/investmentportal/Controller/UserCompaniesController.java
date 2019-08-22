@@ -1,7 +1,7 @@
 package com.rybicki.investmentportal.Controller;
 
-import com.rybicki.investmentportal.Model.Company;
-import com.rybicki.investmentportal.Service.MyCompaniesService;
+import com.rybicki.investmentportal.Model.CompanyBasicInfo;
+import com.rybicki.investmentportal.Service.UserCompaniesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,24 +12,24 @@ import java.util.ArrayList;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-public class MyCompaniesController {
+public class UserCompaniesController {
     @Autowired
-    private MyCompaniesService myCompaniesService;
+    private UserCompaniesService userCompaniesService;
 
     @GetMapping("/stocks/{username}/myCompanies")
-    public ArrayList<Company> getAllCompanies(){
-        return myCompaniesService.findAll();
+    public ArrayList<CompanyBasicInfo> getAllCompanies(@PathVariable String username){
+        return userCompaniesService.findAll(username);
     }
 
     @GetMapping("/stocks/{username}/myCompanies/{symbol}")
-    public Company getCompany(@PathVariable String symbol){
-        return myCompaniesService.findBySymbol(symbol);
+    public CompanyBasicInfo getCompany(@PathVariable String symbol, @PathVariable String username){
+        return userCompaniesService.findBySymbol(symbol, username);
     }
 
     @DeleteMapping("/stocks/{username}/myCompanies/{symbol}")
     public ResponseEntity<Void> deleteCompany(@PathVariable String username, @PathVariable String symbol){
-        Company company = myCompaniesService.deleteBySymbol(symbol);
-        if(company != null) {
+        CompanyBasicInfo companyBasicInfo = userCompaniesService.deleteBySymbol(symbol, username);
+        if(companyBasicInfo != null) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
@@ -37,11 +37,11 @@ public class MyCompaniesController {
 
     @PostMapping("/stocks/{username}/myCompanies/{symbol}")
     public ResponseEntity<Void> addCompany(@PathVariable String username, @PathVariable String symbol){
-        Company createdCompany = myCompaniesService.addBySymbol(symbol);
-        if(createdCompany == null){
+        CompanyBasicInfo createdCompanyBasicInfo = userCompaniesService.addBySymbol(symbol, username);
+        if(createdCompanyBasicInfo == null){
             return ResponseEntity.badRequest().build();
         }
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(createdCompany.getSymbol()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(createdCompanyBasicInfo.getSymbol()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }

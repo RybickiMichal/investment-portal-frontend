@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Stocks {
-    private ArrayList<Company> dowJones30;
+    private ArrayList<CompanyBasicInfo> dowJones30;
     private static String[] dowJones30Symbols = new String[] {"AXP","AAPL","BA","CAT","CVX","CSCO","DIS","DOW","GS","HD","IBM","INTC","JNJ","JPM","KO","MCD","MMM","MRK","MSFT","NKE","PFE","PG","TRV","UTX","UNH","VZ","V","WMT","WBA","XOM"};
 
     public Stocks(){
-        dowJones30 = new ArrayList<Company>();
+        dowJones30 = new ArrayList<CompanyBasicInfo>();
         for (int x=0; x<dowJones30Symbols.length;x++){
-            dowJones30.add(new Company(dowJones30Symbols[x], false));
+            dowJones30.add(new CompanyBasicInfo(dowJones30Symbols[x], false));
         }
         dowJones30 = actualizeCompaniesData(dowJones30,dowJones30Symbols);
     }
@@ -27,21 +27,21 @@ public class Stocks {
         return dowJones30Symbols;
     }
 
-    public Company actualizeCompanyData(Company company){
+    public CompanyBasicInfo actualizeCompanyData(CompanyBasicInfo companyBasicInfo){
         try {
-            Stock stock = YahooFinance.get(company.getSymbol());
-            company.setAnnualYieldDividend(stock.getDividend().getAnnualYield());
-            company.setPrice(stock.getQuote().getPrice());
-            company.setChange(stock.getQuote().getChange());
-            company.setChangeInPercent(stock.getQuote().getChangeInPercent());
-            return company;
+            Stock stock = YahooFinance.get(companyBasicInfo.getSymbol());
+            companyBasicInfo.setAnnualYieldDividend(stock.getDividend().getAnnualYield());
+            companyBasicInfo.setPrice(stock.getQuote().getPrice());
+            companyBasicInfo.setChange(stock.getQuote().getChange());
+            companyBasicInfo.setChangeInPercent(stock.getQuote().getChangeInPercent());
+            return companyBasicInfo;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public ArrayList<Company> actualizeCompaniesData(ArrayList<Company> companies, String[] symbols){
+    public ArrayList<CompanyBasicInfo> actualizeCompaniesData(ArrayList<CompanyBasicInfo> companies, String[] symbols){
         try {
             Map<String, Stock> stock = YahooFinance.get(symbols);
             companies.forEach((company) ->{

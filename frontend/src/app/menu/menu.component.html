@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <ul class="navbar-nav">
-      <li *ngIf="authenticationService.isUserLogged()"><a routerLink="/welcome/username" class="nav-link">Home</a></li>
+      <li *ngIf="authenticationService.isUserLogged()"><a routerLink="/welcome/{{getUsername()}}" class="nav-link">Home</a></li>
       <li><a routerLink="/dowjones30" class="nav-link">Dow Jones 30</a>
       <li *ngIf="authenticationService.isUserLogged()"><a routerLink="/mycompanies" class="nav-link">My Companies
           List</a>

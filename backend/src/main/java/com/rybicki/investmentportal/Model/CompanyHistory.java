@@ -14,7 +14,7 @@ public class CompanyHistory {
     private List<HistoricalQuote> historicalQuotes = new ArrayList<>();
     private Map<Calendar, BigDecimal> companyHistoricalClosedStocks = new HashMap<>();
     private Map<Calendar, BigDecimal[]> companyHistoricalStocks = new HashMap<>();
-    private static final int numberOfFullQuotes = 4;
+    private static final int numberOfDailyQuotes = 4;
 
     public CompanyHistory() {}
 
@@ -44,8 +44,8 @@ public class CompanyHistory {
 
             this.historicalQuotes = stock.getHistory();
             for (int x = 0; x < historicalQuotes.size(); x++) {
-                BigDecimal[] quotes = new BigDecimal[numberOfFullQuotes];
-                for (int y = 0; y < numberOfFullQuotes; y++) {
+                BigDecimal[] quotes = new BigDecimal[numberOfDailyQuotes];
+                for (int y = 0; y < numberOfDailyQuotes; y++) {
                     if(y == 0){
                         quotes[y] = historicalQuotes.get(x).getOpen();
                     }else if(y == 1){

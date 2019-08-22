@@ -1,6 +1,6 @@
 package com.rybicki.investmentportal.Model;
 
-import com.rybicki.investmentportal.Service.MyCompaniesService;
+import com.rybicki.investmentportal.Service.UserCompaniesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;
@@ -10,10 +10,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CompanyDetails extends Company {
+public class CompanyDetails extends CompanyBasicInfo {
 
     private Map<String, Object> companyDetails = new HashMap();
-    private static final Logger LOGGER = LoggerFactory.getLogger(MyCompaniesService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserCompaniesService.class);
 
     public CompanyDetails(String symbol) {
         super(symbol, true);
