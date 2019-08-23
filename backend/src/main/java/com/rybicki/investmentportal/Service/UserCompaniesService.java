@@ -30,23 +30,26 @@ public class UserCompaniesService {
         this.userRepository = userRepository;
     }
 
-    public ArrayList<CompanyBasicInfo> findAll(String username) {
+    public ArrayList<CompanyBasicInfo> findAllUserCompanies(String username) {
         User user = loadUser(username);
         ArrayList<CompanyBasicInfo> companies = loadCompanies(user);
+        if (!companies.isEmpty()) {
+            companies = stocks.actualizeCompaniesData(companies, getCompanySymbols(companies));
+        }
+        return companies;
+    }
 
+    private String[] getCompanySymbols(ArrayList<CompanyBasicInfo> companies) {
         CompanySymbol companiesArray[] = new CompanySymbol[companies.size()];
         String companiesSymbols[] = new String[companies.size()];
         companies.toArray(companiesArray);
         for (int x = 0; x < companiesArray.length; x++) {
             companiesSymbols[x] = companiesArray[x].getSymbol();
         }
-        if(!companies.isEmpty()) {
-            companies = stocks.actualizeCompaniesData(companies, companiesSymbols);
-        }
-        return companies;
+        return companiesSymbols;
     }
 
-    public CompanySymbol findCompanyBySymbol(String symbol, String username) {
+    private CompanySymbol findCompanyBySymbol(String symbol, String username) {
         User user = loadUser(username);
         ArrayList<CompanySymbol> companies = loadCompanySymbols(user);
         for (CompanySymbol companyBasicInfo : companies) {
@@ -59,7 +62,7 @@ public class UserCompaniesService {
 
     public CompanyBasicInfo findCompanyBasicInfoBySymbol(String symbol, String username) {
         CompanySymbol companySymbol = findCompanyBySymbol(symbol, username);
-        CompanyBasicInfo companyBasicInfo = new CompanyBasicInfo(companySymbol.getSymbol(),false);
+        CompanyBasicInfo companyBasicInfo = new CompanyBasicInfo(companySymbol.getSymbol(), false);
         stocks.actualizeCompanyData(companyBasicInfo);
         return companyBasicInfo;
     }
@@ -70,7 +73,7 @@ public class UserCompaniesService {
         CompanySymbol company = findCompanyBySymbol(symbol, username);
         if (company != null) {
             companyRepository.deleteById(company.getId());
-            return new CompanyBasicInfo(company.getSymbol(),false);
+            return new CompanyBasicInfo(company.getSymbol(), false);
         }
         return null;
     }
@@ -78,21 +81,17 @@ public class UserCompaniesService {
     public CompanyBasicInfo addBySymbol(String symbol, String username) {
         User user = loadUser(username);
         ArrayList<CompanyBasicInfo> companies = loadCompanies(user);
-        boolean companyExistInList = false;
         for (CompanyBasicInfo companyBasicInfo : companies) {
             if (companyBasicInfo.getSymbol().equals(symbol)) {
-                companyExistInList = true;
-            }
-        }
-        if (!companyExistInList) {
-            CompanyBasicInfo newCompanyBasicInfo = new CompanyBasicInfo(symbol, true);
-            if (newCompanyBasicInfo.getSymbol().equals("CompanyBasicInfo doesn't exist")) {
                 return null;
             }
-            companyRepository.save(new CompanySymbol(newCompanyBasicInfo.getSymbol(), user));
-            return newCompanyBasicInfo;
         }
-        return null;
+            CompanyBasicInfo company = new CompanyBasicInfo(symbol, true);
+            if (company.getSymbol().equals("CompanyBasicInfo doesn't exist")) {
+                return null;
+            }
+            companyRepository.save(new CompanySymbol(company.getSymbol(), user));
+            return company;
     }
 
     private ArrayList<CompanySymbol> loadCompanySymbols(User user) {
@@ -112,9 +111,9 @@ public class UserCompaniesService {
         return transformCompanySymbolsToCompanyBasicInfo(loadCompanySymbols(user));
     }
 
-    private ArrayList<CompanyBasicInfo> transformCompanySymbolsToCompanyBasicInfo(ArrayList<CompanySymbol> symbols){
+    private ArrayList<CompanyBasicInfo> transformCompanySymbolsToCompanyBasicInfo(ArrayList<CompanySymbol> symbols) {
         ArrayList<CompanyBasicInfo> companies = new ArrayList<>();
-        for (CompanySymbol companySymbol : symbols){
+        for (CompanySymbol companySymbol : symbols) {
             companies.add(new CompanyBasicInfo(companySymbol.getSymbol(), false));
         }
         return companies;

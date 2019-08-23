@@ -18,7 +18,7 @@ public class UserCompaniesController {
 
     @GetMapping("/stocks/{username}/myCompanies")
     public ArrayList<CompanyBasicInfo> getAllCompanies(@PathVariable String username){
-        return userCompaniesService.findAll(username);
+        return userCompaniesService.findAllUserCompanies(username);
     }
 
     @GetMapping("/stocks/{username}/myCompanies/{symbol}")
