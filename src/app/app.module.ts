@@ -15,6 +15,7 @@ import { MyCompaniesComponent } from './my-companies/my-companies.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChartsComponent } from './charts/charts.component';
 import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor
     DowJones30Component,
     LogoutComponent,
     MyCompaniesComponent,
-    ChartsComponent
+    ChartsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

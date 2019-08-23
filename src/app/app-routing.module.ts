@@ -8,10 +8,12 @@ import { LogoutComponent } from './logout/logout.component';
 import { RouteGuardService } from './service/route-guard.service';
 import { MyCompaniesComponent } from './my-companies/my-companies.component';
 import { ChartsComponent } from './charts/charts.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
   {path:'login', component: LoginComponent},
+  {path:'register', component: RegisterComponent},
   {path:'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
   {path:'dowjones30', component: DowJones30Component},
   {path:'logout', component: LogoutComponent, canActivate:[RouteGuardService]},

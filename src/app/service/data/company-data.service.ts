@@ -22,7 +22,6 @@ export class CompanyDataService {
   }
 
   addCompany(username: string, symbol: string, company) {
-    console.log("http://localhost:8080/stocks/${username}/myCompanies/${symbol}")
     return this.http.post(`http://localhost:8080/stocks/${username}/myCompanies/${symbol}`, company)
   }
 
