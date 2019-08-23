@@ -28,7 +28,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<CompanySymbol> companies;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String username, String password, String roles, String permissions){
         this.username = username;
