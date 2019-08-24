@@ -25,7 +25,7 @@ export class MyCompaniesComponent implements OnInit {
     private companyDataService: CompanyDataService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.companyDataService.retrieveAllCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe( 
+    this.companyDataService.retrieveAllCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe(
       response => {
         this.companies = response;
       }
@@ -34,12 +34,12 @@ export class MyCompaniesComponent implements OnInit {
       this.refreshCompanies()
     }, 5000);
   }
-  ngOnDestroy(){
-    if(this.interval){
+  ngOnDestroy() {
+    if (this.interval) {
       clearInterval(this.interval)
     }
   }
-  
+
   companies: Company[]
   message: String
   stock: String
@@ -63,6 +63,11 @@ export class MyCompaniesComponent implements OnInit {
   }
 
   addCompany(symbol: string) {
+    for (let entry of this.companies) {
+      if (entry.symbol.toUpperCase() == symbol.toUpperCase()) {
+        return this.message = `The company is already in your list!`
+      }
+    }
     if (symbol == null) {
       return this.message = `You wrote empty symbol. Please write correct symbol!`
     }
@@ -78,7 +83,7 @@ export class MyCompaniesComponent implements OnInit {
     )
   }
 
-  goToCharts(symbol: string){
+  goToCharts(symbol: string) {
     this.router.navigate(['mycompanies', 'charts', symbol])
   }
 
