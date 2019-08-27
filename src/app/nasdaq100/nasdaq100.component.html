@@ -1,0 +1,31 @@
+<h1>Nasdaq 100</h1>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Dividend</th>
+        <th>Change</th>
+        <th>Change In %</th>
+        <th>Charts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="goToCharts(company.symbol)" *ngFor="let company of companies">
+        <td [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}">{{company.symbol}}</td>
+        <td [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}">{{company.name}}</td>
+        <td [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}">{{company.price | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}">{{company.annualYieldDividend | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}">{{company.change | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}">{{company.changeInPercent}}%</td>
+        <td [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}"><button class="btn btn-secondary">Charts</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <BR>
+  <BR>
+</div>

@@ -17,6 +17,7 @@ import { ChartsComponent } from './charts/charts.component';
 import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
 import { RegisterComponent } from './register/register.component';
 import { StandardAndPoors500Component } from './standard-and-poors500/standard-and-poors500.component';
+import { Nasdaq100Component } from './nasdaq100/nasdaq100.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StandardAndPoors500Component } from './standard-and-poors500/standard-a
     MyCompaniesComponent,
     ChartsComponent,
     RegisterComponent,
-    StandardAndPoors500Component
+    StandardAndPoors500Component,
+    Nasdaq100Component
   ],
   imports: [
     BrowserModule,
