@@ -9,6 +9,7 @@ import { RouteGuardService } from './service/route-guard.service';
 import { MyCompaniesComponent } from './my-companies/my-companies.component';
 import { ChartsComponent } from './charts/charts.component';
 import { RegisterComponent } from './register/register.component';
+import { StandardAndPoors500Component } from './standard-and-poors500/standard-and-poors500.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
   {path:'dowjones30', component: DowJones30Component},
+  {path:'standardandpoors500', component: StandardAndPoors500Component},
   {path:'logout', component: LogoutComponent, canActivate:[RouteGuardService]},
   {path:'mycompanies', component: MyCompaniesComponent, canActivate:[RouteGuardService]},
   {path:':list/charts/:symbol', component: ChartsComponent},

@@ -21,6 +21,10 @@ export class CompanyDataService {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/dowJones`)
   }
 
+  retrieveStandardAndPoors500() {
+    return this.http.get<Company[]>(`http://localhost:8080/stocks/standardPoors`)
+  }
+
   addCompany(username: string, symbol: string, company) {
     return this.http.post(`http://localhost:8080/stocks/${username}/myCompanies/${symbol}`, company)
   }

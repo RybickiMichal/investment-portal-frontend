@@ -3,6 +3,7 @@
     <ul class="navbar-nav">
       <li *ngIf="authenticationService.isUserLogged()"><a routerLink="/welcome/{{getUsername()}}" class="nav-link">Home</a></li>
       <li><a routerLink="/dowjones30" class="nav-link">Dow Jones 30</a>
+      <li><a routerLink="/standardandpoors500" class="nav-link">S&P 500</a>
       <li *ngIf="authenticationService.isUserLogged()"><a routerLink="/mycompanies" class="nav-link">My Companies
           List</a>
       </li>
