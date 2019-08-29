@@ -1,3 +1,43 @@
-<div>
-  Welcome {{name}}.
-</div>
+<h1>Welcome {{name}}!</h1> 
+<h4>Check your favourite index or create your own list with companies that you interests.</h4>
+<BR>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Change</th>
+        <th>Change In %</th>
+        <th>Charts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="goToDowJones30()">
+        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.symbol}}</td>
+        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.name}}</td>
+        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.price | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.change | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.changeInPercent}}%</td>
+        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}"><button class="btn btn-secondary">Charts</button></td>
+      </tr>
+      <tr (click)="goToStandardAndPoors500()">
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.symbol}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.name}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.price | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.change | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.changeInPercent}}%</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}"><button class="btn btn-secondary">Charts</button></td>
+      </tr>
+      <tr (click)="goToNasdaq100()">
+        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.symbol}}</td>
+        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.name}}</td>
+        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.price | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.change | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.changeInPercent}}%</td>
+        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}"><button class="btn btn-secondary">Charts</button></td>
+      </tr>
+    </tbody>
+  </table>
+

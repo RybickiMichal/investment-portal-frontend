@@ -15,15 +15,21 @@ export class DowJones30Component implements OnInit {
 
   companies: Company[]
   interval: any
+  indexDowJones30: Company = {
+    symbol: '',
+    changeInPercent: 0,
+    name: '',
+    price: 0,
+    change: 0,
+    annualYieldDividend:0
+  }
 
   ngOnInit() {
-    this.companyDataService.retrieveDowJones30().subscribe(
-      response => {
-        this.companies = response;
-      } 
-    );
+    this.refreshCompanies()
+    this.refreshIndex()
     this.interval = setInterval(() => {
       this.refreshCompanies()
+      this.refreshIndex()
     }, 5000);
   }
   ngOnDestroy(){
@@ -37,6 +43,14 @@ export class DowJones30Component implements OnInit {
       response => {
         this.companies = response;
       }
+    )
+  }
+
+  refreshIndex() {
+    this.companyDataService.retrieveDowJones30BasicInfo().subscribe(
+      response => {
+        this.indexDowJones30 = response;
+      } 
     )
   }
 

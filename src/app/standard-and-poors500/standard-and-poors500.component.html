@@ -1,5 +1,32 @@
-<h1>Standard And Poors 500</h1>
+<h1>{{standardAndPoors500.name}}</h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Change</th>
+        <th>Change In %</th>
+        <th>Charts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="goToCharts(standardAndPoors500.symbol)">
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.symbol}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.name}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.price | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.change | currency: 'USD'}}</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}">{{standardAndPoors500.changeInPercent}}%</td>
+        <td [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}"><button class="btn btn-secondary">Charts</button></td>
+      </tr>
+    </tbody>
+  </table>
 
+  <BR>
+  <BR>
+</div>
+<h1>Index Companies</h1>
 <div class="container">
   <table class="table">
     <thead>

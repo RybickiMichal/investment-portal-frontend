@@ -11,23 +11,29 @@ import { Router } from '@angular/router';
 export class StandardAndPoors500Component implements OnInit {
 
   constructor(private router: Router,
-    private companyDataService:CompanyDataService) { }
+    private companyDataService: CompanyDataService) { }
 
   companies: Company[]
   interval: any
+  standardAndPoors500: Company = {
+    symbol: '',
+    changeInPercent: 0,
+    name: '',
+    price: 0,
+    change: 0,
+    annualYieldDividend: 0
+  }
 
   ngOnInit() {
-    this.companyDataService.retrieveStandardAndPoors500().subscribe(
-      response => {
-        this.companies = response;
-      } 
-    );
+    this.refreshIndex()
+    this.refreshCompanies()
     this.interval = setInterval(() => {
+      this.refreshIndex()
       this.refreshCompanies()
     }, 5000);
   }
-  ngOnDestroy(){
-    if(this.interval){
+  ngOnDestroy() {
+    if (this.interval) {
       clearInterval(this.interval)
     }
   }
@@ -40,7 +46,15 @@ export class StandardAndPoors500Component implements OnInit {
     )
   }
 
-  goToCharts(symbol: string){
+  refreshIndex() {
+    this.companyDataService.retrieveStandardAndPoors500BasicInfo().subscribe(
+      response => {
+        this.standardAndPoors500 = response;
+      }
+    )
+  }
+
+  goToCharts(symbol: string) {
     this.router.navigate(['standardandpoors500', 'charts', symbol])
   }
 

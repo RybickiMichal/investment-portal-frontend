@@ -21,12 +21,24 @@ export class CompanyDataService {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/dowJones`)
   }
 
+  retrieveDowJones30BasicInfo(){
+    return this.http.get<Company>(`http://localhost:8080/stocks/dowJones/getIndexInfo`)
+  }
+
   retrieveStandardAndPoors500() {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/standardPoors`)
   }
 
+  retrieveStandardAndPoors500BasicInfo() {
+    return this.http.get<Company>(`http://localhost:8080/stocks/standardPoors/getIndexInfo`)
+  }
+
   retrieveNasdaq100 () {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/nasdaq`)
+  }
+
+  retrieveNasdaq100BasicInfo () {
+    return this.http.get<Company>(`http://localhost:8080/stocks/nasdaq/getIndexInfo`)
   }
 
   addCompany(username: string, symbol: string, company) {
