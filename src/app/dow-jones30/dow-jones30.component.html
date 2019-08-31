@@ -1,32 +1,16 @@
 <h1>{{indexDowJones30.name}}</h1>
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Change</th>
-        <th>Change In %</th>
-        <th>Charts</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr (click)="goToCharts(indexDowJones30.symbol)">
-        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.symbol}}</td>
-        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.name}}</td>
-        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.price | currency: 'USD'}}</td>
-        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.change | currency: 'USD'}}</td>
-        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}">{{indexDowJones30.changeInPercent}}%</td>
-        <td [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}"><button class="btn btn-secondary">Charts</button></td>
-      </tr>
-    </tbody>
-  </table>
-
+<BR>
+  <td class="d-flex justify-content-center">
+    <div class="card" style="width: 40rem;"
+      [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}" (click)="goToCharts(indexDowJones30.symbol)">
+      <div class="card-body">
+        Symbol: {{indexDowJones30.symbol}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: {{indexDowJones30.price | currency: 'USD'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change: {{indexDowJones30.change | currency: 'USD'}} ({{indexDowJones30.changeInPercent}}%)
+        <button class="btn btn-secondary" (click)="goToCharts(indexDowJones30.symbol)">Charts</button>
+      </div>
+    </div>
+  </td>
   <BR>
-  <BR>
-</div>
-<h1>Index Companies</h1>
+  <h4>Index Companies</h4>
 <div class="container">
   <table class="table">
     <thead>

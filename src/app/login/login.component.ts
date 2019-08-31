@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
@@ -9,14 +9,21 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,
+  constructor(private route: ActivatedRoute,
+    private router: Router,
     private authenticationService: AuthenticationService) { }
 
-  username = 'username'
-  password = 'password'
-  invalidLogin = false;
-  errorMessage = 'Invalid Credentials'
+  username: String
+  password: String
+  invalidLogin: boolean = false;
+  message: String
 
+  ngOnInit() {
+    let param = this.route.snapshot.params['registrated']
+    if(param){
+      this.message = "Registration completed. You can login now."
+    }
+  }
 
   handleLogin() {
     this.authenticationService.executeAuthenticationService(this.username, this.password)
@@ -27,11 +34,13 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.invalidLogin = true
+          this.message = "Invalid Credentials"
         }
       )
   }
 
-  ngOnInit() {
+  goToRegister(){
+    this.router.navigate(['register'])
   }
 
 }

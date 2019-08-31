@@ -3,7 +3,7 @@
 <div class="alert alert-success" *ngIf='message'>{{message}}</div>
 <BR>
 <form>
-  <input name="stock" [(ngModel)]="stock" class="form-control" type="text" placeholder="Write Company Symbol here, which would you like to add" />  
+  <input name="stock" [(ngModel)]="stock" class="form-control" type="text" placeholder="Write here company symbol, which would you like to add" />  
   <button (click)="addCompany(stock)" class="btn btn-success">Add</button>
 </form>
 <BR>

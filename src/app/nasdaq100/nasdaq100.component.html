@@ -1,32 +1,16 @@
 <h1>{{indexNasdaq100.name}}</h1>
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Change</th>
-        <th>Change In %</th>
-        <th>Charts</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr (click)="goToCharts(indexNasdaq100.symbol)">
-        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.symbol}}</td>
-        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.name}}</td>
-        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.price | currency: 'USD'}}</td>
-        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.change | currency: 'USD'}}</td>
-        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}">{{indexNasdaq100.changeInPercent}}%</td>
-        <td [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}"><button class="btn btn-secondary">Charts</button></td>
-      </tr>
-    </tbody>
-  </table>
-
+<BR>
+  <td class="d-flex justify-content-center">
+    <div class="card" style="width: 40rem;"
+      [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}" (click)="goToCharts(indexNasdaq100.symbol)">
+      <div class="card-body">
+        Symbol: {{indexNasdaq100.symbol}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: {{indexNasdaq100.price | currency: 'USD'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change: {{indexNasdaq100.change | currency: 'USD'}} ({{indexNasdaq100.changeInPercent}}%)
+        <button class="btn btn-secondary" (click)="goToCharts(indexNasdaq100.symbol)">Charts</button>
+      </div>
+    </div>
+  </td>
   <BR>
-  <BR>
-</div>
-<h1>Index Companies</h1>
+  <h4>Index Companies</h4>
 <div class="container">
   <table class="table">
     <thead>

@@ -15,8 +15,10 @@ import { Nasdaq100Component } from './nasdaq100/nasdaq100.component';
 const routes: Routes = [
   {path:'', component: LoginComponent},
   {path:'login', component: LoginComponent},
+  {path:'login/:registrated', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
+  {path:'welcome', component: WelcomeComponent, canActivate:[RouteGuardService]},
   {path:'dowjones30', component: DowJones30Component},
   {path:'nasdaq100', component: Nasdaq100Component},
   {path:'standardandpoors500', component: StandardAndPoors500Component},

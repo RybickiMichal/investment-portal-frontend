@@ -25,6 +25,10 @@ export class CompanyDataService {
     return this.http.get<Company>(`http://localhost:8080/stocks/dowJones/getIndexInfo`)
   }
 
+  retrieveRandomDowJones30Companies() {
+    return this.http.get<Company[]>(`http://localhost:8080/stocks/dowJones/getRandomCompanies`)
+  }
+
   retrieveStandardAndPoors500() {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/standardPoors`)
   }
@@ -33,12 +37,20 @@ export class CompanyDataService {
     return this.http.get<Company>(`http://localhost:8080/stocks/standardPoors/getIndexInfo`)
   }
 
+  retrieveRandomStandardAndPoors500Companies() {
+    return this.http.get<Company[]>(`http://localhost:8080/stocks/standardPoors/getRandomCompanies`)
+  }
+
   retrieveNasdaq100 () {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/nasdaq`)
   }
 
   retrieveNasdaq100BasicInfo () {
     return this.http.get<Company>(`http://localhost:8080/stocks/nasdaq/getIndexInfo`)
+  }
+
+  retrieveRandomDNasdaq100Companies() {
+    return this.http.get<Company[]>(`http://localhost:8080/stocks/nasdaq/getRandomCompanies`)
   }
 
   addCompany(username: string, symbol: string, company) {

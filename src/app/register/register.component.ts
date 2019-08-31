@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
             if (!data) {
               this.userRegistrationService.register(user).subscribe(
                 data => {
-                  this.router.navigate(['login'])
+                  this.router.navigate(['login', 'registrated'])
                 },
                 error => {
                   this.errorMessage = 'Invalid Credentials.'
