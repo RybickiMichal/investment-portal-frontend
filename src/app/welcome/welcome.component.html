@@ -37,39 +37,16 @@
 <h4>Popular Indexes</h4>
 <div class="container">
   <table>
-    <td>
-      <div class="card" style="width: 15rem;"
-        [ngClass]="{increase: isPositive(indexNasdaq100.change), decrease: isNegative(indexNasdaq100.change)}" (click)="goToNasdaq100()">
-        <div class="card-body">
-          Name: {{indexNasdaq100.name}}<BR>
-          Price: {{indexNasdaq100.price | currency: 'USD'}}<BR>
-          Change: {{indexNasdaq100.change | currency: 'USD'}} ({{indexNasdaq100.changeInPercent}}%)
-          <button class="btn btn-secondary" (click)="goToCharts(indexNasdaq100.symbol)">Charts</button>
-        </div>
-      </div>
-    </td>
-    <td>
-      <div class="card" style="width: 15rem;"
-        [ngClass]="{increase: isPositive(indexDowJones30.change), decrease: isNegative(indexDowJones30.change)}" (click)="goToDowJones30()">
-        <div class="card-body">
-          Name: Dow Jones 30<BR>
-          Price: {{indexDowJones30.price | currency: 'USD'}}<BR>
-          Change: {{indexDowJones30.change | currency: 'USD'}} ({{indexDowJones30.changeInPercent}}%)
-          <button class="btn btn-secondary" (click)="goToCharts(indexDowJones30.symbol)">Charts</button>
-        </div>
-      </div>
-    </td>
-    <td>
-      <div class="card" style="width: 15rem;"
-        [ngClass]="{increase: isPositive(standardAndPoors500.change), decrease: isNegative(standardAndPoors500.change)}" (click)="goToStandardAndPoors500()">
-        <div class="card-body">
-          Name: {{standardAndPoors500.name}}<BR>
-          Price: {{standardAndPoors500.price | currency: 'USD'}}<BR>
-          Change: {{standardAndPoors500.change | currency: 'USD'}} ({{standardAndPoors500.changeInPercent}}%)
-          <button class="btn btn-secondary" (click)="goToCharts(standardAndPoors500.symbol)">Charts</button>
-        </div>
-      </div>
-    </td>
+        <td (click)="goToCharts(company.symbol)" *ngFor="let company of nasdaq100DowJones30SAndP500Indexes">
+          <div class="card" style="width: 15rem;" [ngClass]="{increase: isPositive(company.change), decrease: isNegative(company.change)}">
+              <div class="card-body">
+                Symbol: {{company.symbol}}<BR>
+                Price: {{company.price | currency: 'USD'}}<BR>
+                Change: {{company.change | currency: 'USD'}} ({{company.changeInPercent}}%)
+                <button class="btn btn-secondary" (click)="goToCharts(company.symbol)">Charts</button>
+              </div>
+            </div>
+          </td>
   </table>
 </div>
 (Tip: Click on the card to see the companies list or on the charts button to check details, statistics and charts)

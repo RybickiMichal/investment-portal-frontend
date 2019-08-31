@@ -33,46 +33,13 @@ export class WelcomeComponent implements OnInit {
 
   randomNasdaq100Companies: Company[]
   randomDowJones30Companies: Company[]
-  standardAndPoors500: Company = {
-    symbol: '',
-    changeInPercent: 0,
-    name: '',
-    price: 0,
-    change: 0,
-    annualYieldDividend: 0
-  }
-  indexDowJones30: Company = {
-    symbol: '',
-    changeInPercent: 0,
-    name: '',
-    price: 0,
-    change: 0,
-    annualYieldDividend:0
-  }
-  indexNasdaq100: Company = {
-    symbol: '',
-    changeInPercent: 0,
-    name: '',
-    price: 0,
-    change: 0,
-    annualYieldDividend:0
-  }
+  nasdaq100DowJones30SAndP500Indexes: Company[]
   interval: any
 
   refreshIndexes() {
-    this.companyDataService.retrieveNasdaq100BasicInfo().subscribe(
+    this.companyDataService.retrieveNasdaq100DowJones30SAndPoors500Indexes().subscribe(
       response => {
-        this.indexNasdaq100 = response;
-      }
-    )
-    this.companyDataService.retrieveDowJones30BasicInfo().subscribe(
-      response => {
-        this.indexDowJones30 = response;
-      } 
-    )
-    this.companyDataService.retrieveStandardAndPoors500BasicInfo().subscribe(
-      response => {
-        this.standardAndPoors500 = response;
+        this.nasdaq100DowJones30SAndP500Indexes = response;
       }
     )
   }
@@ -83,7 +50,7 @@ export class WelcomeComponent implements OnInit {
         this.randomDowJones30Companies = response;
       }
     )
-    this.companyDataService.retrieveRandomDNasdaq100Companies().subscribe(
+    this.companyDataService.retrieveRandomNasdaq100Companies().subscribe(
       response => {
         this.randomNasdaq100Companies = response;
       }

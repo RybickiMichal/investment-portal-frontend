@@ -1,20 +1,21 @@
 <h1>Register</h1>
- <div class="container">
+<div class="container">
   <div class="alert alert-warning" *ngIf='errorMessage'>{{errorMessage}}</div>
   <div>
-    <label for="Username">Username</label>
-    <BR>
-    <input type="text" name="username" [(ngModel)]="username">
-    <div class="alert alert-warning" *ngIf='usernameMessage'>{{usernameMessage}}</div>
-    <BR>
-    
-    <label for="Password">Password</label>
-    <BR>
-    <input type="password" name="password" [(ngModel)]="password">
-    <div class="alert alert-warning" *ngIf='passwordMessage'>{{passwordMessage}}</div>
-    <BR>
-    <BR>
-    <button (click)=register() class="btn btn-success">Register</button>
+    <form>
+      <label for="Username">Username</label>
+      <BR>
+      <input type="text" name="username" [(ngModel)]="username">
+      <div class="alert alert-warning" *ngIf='usernameMessage'>{{usernameMessage}}</div>
+      <BR>
 
+      <label for="Password">Password</label>
+      <BR>
+      <input type="password" name="password" [(ngModel)]="password">
+      <div class="alert alert-warning" *ngIf='passwordMessage'>{{passwordMessage}}</div>
+      <BR>
+      <BR>
+      <button (click)=register() class="btn btn-success">Register</button>
+    </form>
   </div>
 </div>

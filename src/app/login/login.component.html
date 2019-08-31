@@ -2,11 +2,12 @@
 <div class="container">
   <div class="alert alert-warning" *ngIf='message'>{{message}}</div>
   <div>
-    Username : <input type="text" name="username" [(ngModel)]="username">
-    Password : <input type="password" name="password" [(ngModel)]="password">
+    <form>
+      Username : <input type="text" name="username" [(ngModel)]="username">
+      Password : <input type="password" name="password" [(ngModel)]="password">
 
-    <button (click)=handleLogin() class="btn btn-success">login</button>
-
+      <button (click)=handleLogin() class="btn btn-success">login</button>
+    </form>
   </div>
 </div>
 <BR>

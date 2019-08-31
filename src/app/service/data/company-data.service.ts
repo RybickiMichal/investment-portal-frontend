@@ -49,8 +49,12 @@ export class CompanyDataService {
     return this.http.get<Company>(`http://localhost:8080/stocks/nasdaq/getIndexInfo`)
   }
 
-  retrieveRandomDNasdaq100Companies() {
+  retrieveRandomNasdaq100Companies() {
     return this.http.get<Company[]>(`http://localhost:8080/stocks/nasdaq/getRandomCompanies`)
+  }
+
+  retrieveNasdaq100DowJones30SAndPoors500Indexes() {
+    return this.http.get<Company[]>(`http://localhost:8080/stocks/index/getNasdaq100DowJones30SAndP500Indexes`)
   }
 
   addCompany(username: string, symbol: string, company) {
