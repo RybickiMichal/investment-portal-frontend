@@ -25,14 +25,14 @@ export class MyCompaniesComponent implements OnInit {
     private companyDataService: CompanyDataService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.companyDataService.retrieveAllCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe(
+    this.companyDataService.retrieveUserCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe(
       response => {
         this.companies = response;
       }
     );
     this.interval = setInterval(() => {
       this.refreshCompanies()
-    }, 5000);
+    }, 30000);
   }
   ngOnDestroy() {
     if (this.interval) {
@@ -55,7 +55,7 @@ export class MyCompaniesComponent implements OnInit {
   }
 
   refreshCompanies() {
-    this.companyDataService.retrieveAllCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe(
+    this.companyDataService.retrieveUserCompanies(this.authenticationService.getAuthenticatedUser().toString()).subscribe(
       response => {
         this.companies = response;
       }

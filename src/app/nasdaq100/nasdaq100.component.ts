@@ -30,7 +30,7 @@ export class Nasdaq100Component implements OnInit {
     this.interval = setInterval(() => {
       this.refreshCompanies()
       this.refreshIndex()
-    }, 5000);
+    }, 30000);
   }
   ngOnDestroy() {
     if (this.interval) {

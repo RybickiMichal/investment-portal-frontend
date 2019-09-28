@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as CanvasJS from './canvasjs.min';
 import { CompanyDataService } from '../service/data/company-data.service';
+import { HistoricalQuotesService } from '../service/data/historical-quotes.service';
+import { HistoricalFullQuotesService } from '../service/data/historical-full-quotes.service';
 
 @Component({
   selector: 'app-charts',
@@ -12,7 +14,9 @@ export class ChartsComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private companyDataService: CompanyDataService) { }
+    private companyDataService: CompanyDataService,
+    private historicalQuotesService: HistoricalQuotesService,
+    private historicalFullQuotesService: HistoricalFullQuotesService) { }
   symbol: string
   list: string
   chart: any
@@ -110,7 +114,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastSevenDays() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastSevenDays(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastSevenDays(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -119,7 +123,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastTwoWeeks() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastTwoWeeks(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastTwoWeeks(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -128,7 +132,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastMonth() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastMonth(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastMonth(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -137,7 +141,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastTwoMonths() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastTwoMonths(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastTwoMonths(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -146,7 +150,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastHalfYear() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastHalfYear(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastHalfYear(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -155,7 +159,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastYear() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastYear(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastYear(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -164,7 +168,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastTwoYears() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastTwoYears(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastTwoYears(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -173,7 +177,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastFiveYears() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastFiveYears(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastFiveYears(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -182,7 +186,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastTenYears() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastTenYears(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastTenYears(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -191,7 +195,7 @@ export class ChartsComponent implements OnInit {
 
   getHQLastTwentyYears() {
     this.dataPoints.length = 0
-    this.companyDataService.retrieveHQLastTwentyYears(this.symbol).subscribe(
+    this.historicalQuotesService.retrieveHQLastTwentyYears(this.symbol).subscribe(
       response => {
         this.handleHQData(response)
       }
@@ -211,7 +215,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastSevenDays() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastSevenDays(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastSevenDays(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -220,7 +224,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastTwoWeeks() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastTwoWeeks(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastTwoWeeks(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -229,7 +233,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastMonth() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastMonth(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastMonth(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -238,7 +242,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastTwoMonths() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastTwoMonths(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastTwoMonths(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -247,7 +251,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastHalfYear() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastHalfYear(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastHalfYear(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -256,7 +260,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastYear() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastYear(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastYear(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -265,7 +269,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastTwoYears() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastTwoYears(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastTwoYears(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -274,7 +278,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastFiveYears() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastFiveYears(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastFiveYears(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -283,7 +287,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastTenYears() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastTenYears(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastTenYears(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }
@@ -292,7 +296,7 @@ export class ChartsComponent implements OnInit {
 
   getFullHQLastTwentyYears() {
     this.fullDataPoints.length = 0
-    this.companyDataService.retrieveFullHQLastTwoYears(this.symbol).subscribe(
+    this.historicalFullQuotesService.retrieveFullHQLastTwoYears(this.symbol).subscribe(
       response => {
         this.handleFullHQData(response)
       }

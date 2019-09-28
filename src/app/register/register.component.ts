@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
       this.usernameMessage = 'Login should have minimum 5 chars'
     }
     if (user.password.length < 8) {
-      this.passwordMessage = 'Login should have minimum 8 chars'
+      this.passwordMessage = 'Password should have minimum 8 chars'
     }
   }
 }

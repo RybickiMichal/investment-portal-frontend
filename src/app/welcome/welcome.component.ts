@@ -23,7 +23,7 @@ export class WelcomeComponent implements OnInit {
     this.interval = setInterval(() => {
       this.refreshIndexes()
       this.refreshRandomCompanies()
-    }, 10000);
+    }, 30000);
   }
   ngOnDestroy() {
     if (this.interval) {

@@ -30,7 +30,7 @@ export class StandardAndPoors500Component implements OnInit {
     this.interval = setInterval(() => {
       this.refreshIndex()
       this.refreshCompanies()
-    }, 5000);
+    }, 30000);
   }
   ngOnDestroy() {
     if (this.interval) {
